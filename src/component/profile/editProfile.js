@@ -49,7 +49,7 @@ handleChangeInput(e) {
     }
     console.log(body);
     console.log("role",typeof this.state.roles[0].name);
-    const urlUpdate = `http://localhost:8085/api/account/update?id=${id}`;
+    const urlUpdate = `http://hanuminimart.azurewebsites.net/api/account/update?id=${id}`;
     const postDataUser = await axios.post(urlUpdate, body);
     const userAfterUpdate = postDataUser.data;
     console.log("data sau update ne", postDataUser.data);
@@ -74,7 +74,7 @@ handleChangeInput(e) {
         id: Number(userId)
       })
     }
-    const url = "http://localhost:8085/api/account/getAll";
+    const url = "http://hanuminimart.azurewebsites.net/api/account/getAll";
     const getData = await axios({
       method: "GET",
       url,

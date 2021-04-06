@@ -209,7 +209,7 @@ class SignUp extends React.Component {
   async fetRegister(e) {
     e.preventDefault();
     const { name, username, phoneNumber, address, password } = this.state;
-    const url = "http://localhost:8085/auth/signup";
+    const url = "http://hanuminimart.azurewebsites.net/auth/signup";
     const body = {
       name: name,
       username: username,

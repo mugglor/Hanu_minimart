@@ -50,7 +50,7 @@ class ManageProduct extends React.Component {
 
     const {search} = this.state;
     console.log(search);
-    const url = `http://localhost:8085/api/product/getAll?name=${search}`;
+    const url = `http://hanuminimart.azurewebsites.net/api/product/getAll?name=${search}`;
     const fetData = await axios.get(url);
     this.setState({
       product: fetData.data
@@ -61,7 +61,7 @@ class ManageProduct extends React.Component {
     async fetchNearExpireProduct(){
   	console.log("get near expire product");
   	
-  	const url = "http://localhost:8085/api/product/nearExpire";
+  	const url = "http://hanuminimart.azurewebsites.net/api/product/nearExpire";
   	const fetData = await axios.get(url);
   	this.setState({
   		product: fetData.data
@@ -71,7 +71,7 @@ class ManageProduct extends React.Component {
   
   async fetchViewAll() {
     console.log("this_________________");
-    const urlProduct = "http://localhost:8085/api/product/getAll";
+    const urlProduct = "http://hanuminimart.azurewebsites.net/api/product/getAll";
     const getData = await axios.get(urlProduct);
     const product = getData.data;
     console.log("product_______________-", typeof product);
@@ -83,7 +83,7 @@ class ManageProduct extends React.Component {
   
   async componentDidMount() {
     console.log("this_________________");
-    const urlProduct = "http://localhost:8085/api/product/getAll";
+    const urlProduct = "http://hanuminimart.azurewebsites.net/api/product/getAll";
     const getData = await axios.get(urlProduct);
     const product = getData.data;
     console.log("product_______________-", typeof product);

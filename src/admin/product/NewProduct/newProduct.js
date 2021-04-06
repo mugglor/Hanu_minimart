@@ -49,7 +49,7 @@ class NewProduct extends React.Component {
           sale: sale
       }
       
-      const url = "http://localhost:8085/api/product/add";
+      const url = "http://hanuminimart.azurewebsites.net/api/product/add";
       const postNew = await axios.post(url, body);
       console.log("neww Product>>>>>>>>>>>>");
         this.props.history.push("/admin/manageproduct");

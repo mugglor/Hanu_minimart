@@ -36,13 +36,13 @@ class Cart extends React.Component {
 
     const id_Product = id;
     console.log(id)
-    const urlDelete = `http://localhost:8085/api/cartItem/delete/${id_Product}`;
+    const urlDelete = `http://hanuminimart.azurewebsites.net/api/cartItem/delete/${id_Product}`;
     const fetchDelete = await axios.delete(urlDelete);
     if(fetchDelete){
       // this.props.history.push('/');
       // window.location.reload();
       const id = this.getCookie("uid");
-      const urlgetDataCart = `http://localhost:8085/api/cart/getByUser?userId=${id}`;
+      const urlgetDataCart = `http://hanuminimart.azurewebsites.net/api/cart/getByUser?userId=${id}`;
       const getDataCartItem = await axios.get(urlgetDataCart);
   
       const getDataCart = getDataCartItem.data.cartItem;
@@ -70,7 +70,7 @@ class Cart extends React.Component {
       userId: id
     }
    
-    const urlOrder ="http://localhost:8085/api/order/add" ;
+    const urlOrder ="http://hanuminimart.azurewebsites.net/api/order/add" ;
     const fetchData = await axios.post(urlOrder, body);
     
     
@@ -110,7 +110,7 @@ class Cart extends React.Component {
     this.setState({
       id: this.getCookie("uid")
     })
-    const urlgetDataCart = `http://localhost:8085/api/cart/getByUser?userId=${this.getCookie("uid")}`;
+    const urlgetDataCart = `http://hanuminimart.azurewebsites.net/api/cart/getByUser?userId=${this.getCookie("uid")}`;
     const getDataCartItem = await axios.get(urlgetDataCart);
 
     const getDataCart = getDataCartItem.data.cartItem;
