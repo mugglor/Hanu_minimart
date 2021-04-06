@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Hanu_minimart/static/css/main.bacd7231.chunk.css",
-    "main.js": "/Hanu_minimart/static/js/main.610d3530.chunk.js",
-    "main.js.map": "/Hanu_minimart/static/js/main.610d3530.chunk.js.map",
+    "main.js": "/Hanu_minimart/static/js/main.1bd5c6c0.chunk.js",
+    "main.js.map": "/Hanu_minimart/static/js/main.1bd5c6c0.chunk.js.map",
     "runtime-main.js": "/Hanu_minimart/static/js/runtime-main.02e79ee0.js",
     "runtime-main.js.map": "/Hanu_minimart/static/js/runtime-main.02e79ee0.js.map",
     "static/css/2.ecc5a2e3.chunk.css": "/Hanu_minimart/static/css/2.ecc5a2e3.chunk.css",
@@ -18,6 +18,6 @@
     "static/css/2.ecc5a2e3.chunk.css",
     "static/js/2.4cd4b9c8.chunk.js",
     "static/css/main.bacd7231.chunk.css",
-    "static/js/main.610d3530.chunk.js"
+    "static/js/main.1bd5c6c0.chunk.js"
   ]
 }
