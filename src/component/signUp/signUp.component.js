@@ -1,16 +1,16 @@
 import React from "react";
 import { Button } from "antd";
 import { Link, withRouter } from "react-router-dom";
+import { WhatsAppOutlined,HomeOutlined } from "@ant-design/icons";
 import "./signup.css";
 class SignUp extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       status: "",
       name: "",
       username: "",
-      phoneNumber:"",
+      phoneNumber: "",
       address: "",
       password: "",
     };
@@ -21,45 +21,194 @@ class SignUp extends React.Component {
     this.setPhoneNumber = this.setPhoneNumber.bind(this);
     this.setPassword = this.setPassword.bind(this);
     this.setName = this.setName.bind(this);
-  }
-  setPassword(){
-    const passwordInput = document.querySelector('#password');
-    this.setState({
-      password: passwordInput.value
-    })
 
+    this.checkPassword = this.checkPassword.bind(this);
+  }
+  checkName(name) {
+    if (name.length < 0) {
+      return 0;
+    } else if (name.length < 2) {
+      return 1;
+    } else if (name.length > 40) {
+      return 2;
+    }
+  }
+  checkUsername(username) {
+    if (username.length < 0) {
+      return 0;
+    } else if (username.length < 3) {
+      return 1;
+    } else if (username.length > 15) {
+      return 2;
+    }
+  }
+  checkPassword(password) {
+    let strength = 0;
+    if (password.length < 6) {
+      return "Minimum of password length is 6";
+    }
+    if (password.length > 50) {
+      return "Maximum of password length is 50";
+    }
+    if (password.match(/[a-z]+/)) {
+      strength += 1;
+    }
+    if (password.match(/[A-Z]+/)) {
+      strength += 1;
+    }
+    if (password.match(/[0-9]+/)) {
+      strength += 1;
+    }
+    if (password.match(/[$@#&!]+/)) {
+      strength += 1;
+    }
+    console.log("passtrength: ", strength);
+    return strength;
+  }
+  checkPhoneNumber(phoneNumber) {
+    if (phoneNumber.length < 0) {
+      return 0;
+    }
+
+    if (typeof phoneNumber !== "undefined") {
+      var pattern = new RegExp(/^[0-9\b]+$/);
+
+      if (!pattern.test(phoneNumber)) {
+        return 1;
+      } else if (phoneNumber.length != 10) {
+        return 2;
+      } else {
+        return 3;
+      }
+    }
+
+    return 69;
+  }
+  setPassword() {
+    const passwordInput = document.querySelector("#password");
+    const checkPasswordValid = document.querySelector("#checkPasswordValid");
+
+    this.setState({
+      password: passwordInput.value,
+    });
+    if (typeof this.checkPassword(passwordInput.value) == "string") {
+      checkPasswordValid.innerHTML = `<span style="color:red">${this.checkPassword(
+        passwordInput.value
+      )}</span>`;
+    } else {
+      switch (this.checkPassword(passwordInput.value)) {
+        case 0:
+          checkPasswordValid.innerHTML =
+            '<span style="color:red">Your password is very weak</span>';
+          break;
+        case 1:
+          checkPasswordValid.innerHTML =
+            '<span style="color:orange">Your password is weak</span>';
+          break;
+        case 3:
+          checkPasswordValid.innerHTML =
+            '<span style="color:yellow">Your password is ok</span>';
+          break;
+        case 4:
+          checkPasswordValid.innerHTML =
+            '<span style="color:green">Your password is strong</span>';
+          break;
+        default:
+          checkPasswordValid.innerHTML = "";
+          break;
+      }
+    }
+    if (passwordInput.value === "") {
+      checkPasswordValid.innerHTML = "";
+    }
   }
 
-  setName(){
-    const nameInput = document.querySelector('#name');
+  setName() {
+    const nameInput = document.querySelector("#name");
     this.setState({
-      name: nameInput.value
-    })
+      name: nameInput.value,
+    });
+    const checkNameValid = document.querySelector("#checkNameValid");
+    switch (this.checkName(nameInput.value)) {
+      case 0:
+        checkNameValid.innerHTML =
+          '<span style="color:red">Please enter your name</span>';
+        break;
+      case 1:
+        checkNameValid.innerHTML =
+          '<span style="color:red">Your name is too short</span>';
+        break;
+      case 2:
+        checkNameValid.innerHTML =
+          '<span style="color:red">Your name is too long</span>';
+        break;
+      default:
+        checkNameValid.innerHTML = "";
+        break;
+    }
   }
 
-  setUserName(){
-    const userNameInput = document.querySelector('#username');
+  setUserName() {
+    const usernameInput = document.querySelector("#username");
     this.setState({
-      username: userNameInput.value
-    })
+      username: usernameInput.value,
+    });
+    const checkUsernameValid = document.querySelector("#checkUsernameValid");
+    switch (this.checkUsername(usernameInput.value)) {
+      case 0:
+        checkUsernameValid.innerHTML =
+          '<span style="color:red">Please enter username</span>';
+        break;
+      case 1:
+        checkUsernameValid.innerHTML =
+          '<span style="color:red">Your username is too short</span>';
+        break;
+      case 2:
+        checkUsernameValid.innerHTML =
+          '<span style="color:red">Your username is too long</span>';
+        break;
+      default:
+        checkUsernameValid.innerHTML = "";
+        break;
+    }
   }
-  setAddress(){
-    const addressInput = document.querySelector('#address');
+  setAddress() {
+    const addressInput = document.querySelector("#address");
     this.setState({
-      address: addressInput.value
-    })
+      address: addressInput.value,
+    });
   }
-  setPhoneNumber(){
-    const phoneNumberInput = document.querySelector('#phoneNumber');
+  setPhoneNumber() {
+    const phoneNumberInput = document.querySelector("#phoneNumber");
+    const checkPhoneNumberValid = document.querySelector(
+      "#checkPhoneNumberValid"
+    );
     this.setState({
-      phoneNumber: phoneNumberInput.value
-    })
+      phoneNumber: phoneNumberInput.value,
+    });
+
+    switch (this.checkPhoneNumber(phoneNumberInput.value)) {
+      case 0:
+        checkPhoneNumberValid.innerHTML =
+          '<span style="color:red">Please enter your phone number</span>';
+        break;
+      case 1:
+        checkPhoneNumberValid.innerHTML =
+          '<span style="color:red">Please enter only number</span>';
+        break;
+      case 2:
+        checkPhoneNumberValid.innerHTML =
+          '<span style="color:red">Please enter valid phone number</span>';
+        break;
+      default:
+        checkPhoneNumberValid.innerHTML = "";
+        break;
+    }
   }
 
- 
   async fetRegister(e) {
     e.preventDefault();
-    const { name,username, phoneNumber, address, password } = this.state;
+    const { name, username, phoneNumber, address, password } = this.state;
     const url = "http://localhost:8085/auth/signup";
     const body = {
       name: name,
@@ -68,8 +217,7 @@ class SignUp extends React.Component {
       address: address,
       password: password,
     };
-    const response = await fetch(url, 
-      {
+    const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -78,22 +226,26 @@ class SignUp extends React.Component {
     });
     const returnMessage = await response.json();
     console.log(returnMessage);
-        if (returnMessage.success === "false") {
-            this.setState({
-                status: "Wrong Input !"
-            })
-        } else if (returnMessage.success === "true") {
-            this.props.history.push('/signin');
-        }
-    document.querySelector('#error').textContent =`${returnMessage.message}`
+    if (returnMessage.success === "false") {
+      this.setState({
+        status: "Wrong Input !",
+      });
+    } else if (returnMessage.success === "true") {
+      this.props.history.push("/signin");
+    }
+    document.querySelector("#error").textContent = `${returnMessage.message}`;
   }
 
   render() {
     return (
       <div className="wrapper">
-
-
-        <div className="title">Register Here</div>
+        <div className="title">
+        <Link className="home_icon" to="/">
+            <HomeOutlined />
+          </Link>
+          <br />
+          <div> SignUp</div>
+        </div>
         <div className="social_media">
           <div className="item">
             <i className="fab fa-facebook-f"></i>
@@ -113,102 +265,79 @@ class SignUp extends React.Component {
         >
           <div className="input_field">
             <input
-            id ="name"
+              id="name"
               name="name"
               type="text"
               placeholder="Name"
               className="input"
-              onInput= {this.setName}
+              onInput={this.setName}
             />
             <i className="fas fa-user"></i>
           </div>
-          <div className="input_field">
-            <input
-            id = "username"
-              name="username"
-              type="text"
-              placeholder="UserName"
-              className="input"
-              onInput= {this.setUserName}
-            />
-            <i className="fas fa-user"></i>
-          </div>
+          <div id="checkNameValid"></div>
 
           <div className="input_field">
             <input
-            id = "password"
+              id="username"
+              name="username"
+              type="text"
+              placeholder="Username"
+              className="input"
+              onInput={this.setUserName}
+            />
+            <i className="fas fa-user"></i>
+          </div>
+          <div id="checkUsernameValid"></div>
+
+          <div className="input_field">
+            <input
+              id="password"
               name="password"
               type="password"
               placeholder="Password"
               className="input"
-              onInput = {this.setPassword}
+              onInput={this.setPassword}
             />
             <i className="fas fa-lock"></i>
           </div>
+          <div id="checkPasswordValid"></div>
+
           <div className="input_field">
             <input
-            id = 'address'
+              id="address"
               name="address"
               type="text"
               placeholder="Address"
               className="input"
-              onInput = {this.setAddress}
+              onInput={this.setAddress}
             />
+            <i><HomeOutlined /></i>
           </div>
           <div className="input_field">
             <input
-            id = 'phoneNumber'
+              id="phoneNumber"
               name="phoneNumber"
-              type="number"
-              placeholder="PhoneNumber"
+              type="text"
+              placeholder="Phone number"
               className="input"
-              onInput= {this.setPhoneNumber}
+              onInput={this.setPhoneNumber}
             />
-            <i class="fas fa-phone-square-alt"></i>{" "}
+            <div id="checkPhoneNumberValid"></div>
+            <i>
+              <WhatsAppOutlined />
+            </i>
           </div>
           <h6 id="error"></h6>
-          <Link className="linksignin" to = "/signin"> You had an account, go to login page </Link>
-           <button className= "btn" type="submit"  onClick ={this.fetRegister}>Register</button>
-
+          <Link className="linksignin" to="/signin">
+            Login here
+          </Link>
+          <button className="btn" type="submit" onClick={this.fetRegister}>
+            Register
+          </button>
         </form>
       </div>
     );
   }
 }
 
-export default  withRouter(SignUp);
-
-// export default class SignUp extends Component {
-//   render() {
-//     return (
-//       <div>
-//         <Divider orientation="center"> SignUp Form</Divider>
-
-//         <Row justify="center" style={{ padding: "5px"}}>
-//           <Form>
-//           <Form.Item label="Name">
-//               <Input />
-//             </Form.Item>
-//             <Form.Item label="UserName">
-//               <Input />
-//             </Form.Item>
-//             <Form.Item label="Password">
-//               <Input.Password />
-//             </Form.Item>
-//             <Form.Item label="Address">
-//             <input type = "text" />
-//             </Form.Item>
-//             <Form.Item label="PhoneNumber">
-//             <input type = "number"/>
-//             </Form.Item>
-//             <Form.Item>
-//               <Button type="primary">SignUp</Button>
-//             </Form.Item>
-
-//             <Link to ='/signin' style={{textDecoration: 'none', color: 'blue'}}>I already have an account</Link>
-//           </Form>
-//         </Row>
-//       </div>
-//     );
-//   }
-// }
+export default withRouter(SignUp);
