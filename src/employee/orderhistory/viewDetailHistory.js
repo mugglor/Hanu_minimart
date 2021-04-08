@@ -45,8 +45,8 @@ class ViewDetailHistory extends React.Component {
       maxWidth: "sm",
       allProduct: [],
       quantity: [],
-      status: '',
-      orderId: ''
+      status: "",
+      orderId: "",
     };
     this.handleClose = this.handleClose.bind(this);
     this.handleClickOpen = this.handleClickOpen.bind(this);
@@ -56,44 +56,40 @@ class ViewDetailHistory extends React.Component {
     this.checkStorageAccepted = this.checkStorageAccepted.bind(this);
     this.checkStorageCancel = this.checkStorageCancel.bind(this);
 
-
     // this.fetchDataCheckStorage = this.fetchDataCheckStorage.bind(this);
   }
 
- async checkStorageAccepted(){
-    console.log("Aceeeeeeeeeeeeeeeeeeee")
-    
-    try{
-      const urlStatus = `http://localhost:8085/api/order/updateStatus/${this.props.match.params.id}?status=ACCEPTED`;
+  async checkStorageAccepted() {
+    console.log("Aceeeeeeeeeeeeeeeeeeee");
+
+    try {
+      const urlStatus = `http://hanuminimart.azurewebsites.net/api/order/updateStatus/${this.props.match.params.id}?status=ACCEPTED`;
       const updateStatus = await axios.put(urlStatus);
-    }catch(e){
+    } catch (e) {
       alert("the product is not enough");
     }
-   
 
     this.setState({
       open: false,
     });
-    this.props.history.push('/employee/manageorder');
+    this.props.history.push("/employee/manageorder");
   }
 
-  async checkStorageCancel(){
-    console.log("Cancccccccccccccccccccc")
+  async checkStorageCancel() {
+    console.log("Cancccccccccccccccccccc");
 
-    try{
-      const urlStatus = `http://localhost:8085/api/order/updateStatus/${this.props.match.params.id}?status=CANCEL`;
+    try {
+      const urlStatus = `http://hanuminimart.azurewebsites.net/api/order/updateStatus/${this.props.match.params.id}?status=CANCEL`;
       const updateStatus = await axios.put(urlStatus);
-    }catch(e){
+    } catch (e) {
       alert("not done");
-
     }
-    
+
     this.setState({
       open: false,
     });
 
-    this.props.history.push('/employee/manageorder');
-
+    this.props.history.push("/employee/manageorder");
   }
   handleData(productName) {
     const productValid = this.state.allProduct.filter(
@@ -104,7 +100,7 @@ class ViewDetailHistory extends React.Component {
   }
 
   // async fetchDataCheckStorage(name){
-  //   const linkCheck = `http://localhost:8085/api/productcheckStorage/${name}`;
+  //   const linkCheck = `http://hanuminimart.azurewebsites.net/api/productcheckStorage/${name}`;
   //     const fetchLink = await axios.get(linkCheck);
   //     console.log(fetchLink.data);
   //     return fetchLink.data;
@@ -133,7 +129,7 @@ class ViewDetailHistory extends React.Component {
   async componentDidMount() {
     console.log("orderId ,,,,,,", this.props);
     console.log(this.props.match.params.id);
-    const urlCart = `http://localhost:8085/api/order/${this.props.match.params.id}`;
+    const urlCart = `http://hanuminimart.azurewebsites.net/api/order/${this.props.match.params.id}`;
 
     const fetchData = await axios.get(urlCart);
 
@@ -142,19 +138,19 @@ class ViewDetailHistory extends React.Component {
     const quantity = fetchData.data.orderLine.map((item) => {
       console.log(
         item,
-        `http://localhost:8085/api/product/checkStorage/${item.productName}`
+        `http://hanuminimart.azurewebsites.net/api/product/checkStorage/${item.productName}`
       );
       return axios
         .get(
-          `http://localhost:8085/api/product/checkStorage/${item.productName}`
+          `http://hanuminimart.azurewebsites.net/api/product/checkStorage/${item.productName}`
         )
         .then((res) => res.data)
         .catch((e) => console.log(e));
     });
     Promise.all(quantity).then((res) => {
-      console.log("res--------", res)
+      console.log("res--------", res);
 
-      this.setState({ quantity: res })
+      this.setState({ quantity: res });
     });
 
     // const handleQuantity = allPro.map( item => {
@@ -175,9 +171,11 @@ class ViewDetailHistory extends React.Component {
     return (
       <div>
         <div className="container_cart">
-          
-            <Link to ="/employee/manageorder"><button className="btn btn-primary" ><ImportOutlined /></button></Link>
-          
+          <Link to="/employee/manageorder">
+            <button className="btn btn-primary">
+              <ImportOutlined />
+            </button>
+          </Link>
 
           <div className="card shopping-cart">
             {orderDetail.map((product, index) => (
@@ -234,14 +232,14 @@ class ViewDetailHistory extends React.Component {
                         />
                       </div>
                     </div>
-                    <div className="col-2 col-sm-2 col-md-2 text-right">
+                    {/* <div className="col-2 col-sm-2 col-md-2 text-right">
                       <button
                         type="button"
                         className="btn btn-outline-danger btn-xs"
                       >
                         <i className="fa fa-trash" aria-hidden="true" />
                       </button>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <hr />
@@ -272,6 +270,7 @@ class ViewDetailHistory extends React.Component {
                         {orderDetail.map((product, index) => (
                           <div key={index}>
                             <input
+                            style={{}}
                               className="nameProduct"
                               value={product.productName}
                             />
@@ -288,15 +287,34 @@ class ViewDetailHistory extends React.Component {
 
                               {product.enough === true ? (
                                 <div
-                                  disabled={true}
-                                  className="btn btn-success"
+                                  style={{
+                                    color: "#ffff",
+                                    backgroundColor: "green",
+                                    borderRadius: 4,
+                                    width: 66,
+                                    height:27,
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center"
+                                  }}
                                 >
                                   Sufficient
                                 </div>
                               ) : (
-                                <button className="btn btn-danger">
+                                <div
+                                  style={{
+                                    color: "#ffff",
+                                    backgroundColor: "red",
+                                    borderRadius: 7,
+                                    width: 66,
+                                    height:27,
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center"
+                                  }}
+                                >
                                   Insufficient
-                                </button>
+                                </div>
                               )}
                             </div>
                           </div>
@@ -305,6 +323,8 @@ class ViewDetailHistory extends React.Component {
                     </form>
                   </DialogContent>
                   <DialogActions>
+
+               
                     <button
                       onClick={this.checkStorageAccepted}
                       className="btn btn-primary"
@@ -312,14 +332,28 @@ class ViewDetailHistory extends React.Component {
                       Accept
                     </button>
                     <button
-                      className="btn btn-danger" onClick={this.handleClose}
+                      className="btn btn-danger"
+                      onClick={this.handleClose}
                     >
                       Cancel
                     </button>
                   </DialogActions>
                 </Dialog>
               </React.Fragment>
-              <button className="btn btn-danger" onClick={() => { if (window.confirm('Are you sure you wish to cancel this order?')) this.checkStorageCancel() } }>Cancel Order</button>
+              <button
+                className="btn btn-danger"
+                style={{marginLeft: 10}}
+                onClick={() => {
+                  if (
+                    window.confirm(
+                      "Are you sure you wish to cancel this order?"
+                    )
+                  )
+                    this.checkStorageCancel();
+                }}
+              >
+                Cancel Order
+              </button>
               <div className="" style={{ margin: 17 }}>
                 Total price: <b>{totalPrice}</b>
               </div>
