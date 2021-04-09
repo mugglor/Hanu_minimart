@@ -54,9 +54,9 @@ class Navbar extends React.Component {
       <div>
         {(isLogin) ? (
           <div className="authen">
-            <div className="signIn" to="/user/profile">
+            {/* <div className="signIn" to="/user/profile">
               Profile
-            </div>
+            </div> */}
             <div
               onClick={() => {
                 this.deleteCookie("uid");
