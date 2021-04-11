@@ -121,7 +121,6 @@ class ManageProduct extends React.Component {
         <div className="Header">
           <div className="newProduct">
               <Button variant="primary" size="sm">
-                <PlusCircleOutlined />
                 New Product
               </Button>
           </div>

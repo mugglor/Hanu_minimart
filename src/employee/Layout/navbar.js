@@ -52,7 +52,7 @@ getCookie(name) {
 
                     window.location.reload();
                   } } >
-                    <LogoutOutlined/>
+                  Log out
                   </div>
                 </div>
               ) : (

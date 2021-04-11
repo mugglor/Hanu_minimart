@@ -79,7 +79,18 @@ class OrderHistory extends React.Component{
                           <TableCell align="right">{order.user.name}</TableCell>
                           <TableCell align="right">{order.user.address}</TableCell>
                           <TableCell align="right">{order.deliveryTime}</TableCell>
-                          <TableCell align="right">{order.status}</TableCell>
+                          {
+                           
+                           ( () => {
+                             switch(order.status){
+                               case "PENDING": return (<TableCell align="right" style = {{color: "#db8712"}}>{order.status}</TableCell>);
+                               case "ACCEPTED": return (<TableCell align="right" style = {{color: "blue"}}>{order.status}</TableCell>);
+                               case "CANCEL": return (<TableCell align="right" style = {{color: "red"}}>{order.status}</TableCell>);
+                               default: return (<div> </div>);
+                             }
+                           }) ()
+                           
+                         }
                           <TableCell align="right">
                           
                           <Link

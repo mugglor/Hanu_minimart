@@ -42,7 +42,7 @@ getCookie(name) {
             <div>
               {(isLogin)?(
                 <div className="authen">
-                  {*/<div className="signin" to="/user/profile">
+                  {/* <div className="signIn" to="/user/profile">
                     <ProfileOutlined />
                   </div> */}
                   <div onClick ={ ()=>{
@@ -51,7 +51,7 @@ getCookie(name) {
                     this.deleteCookie("admin") ;
                     window.location.reload();
                   } } >
-                    <LogoutOutlined/>
+                 Log out
                   </div>
                 </div>
               ) : (

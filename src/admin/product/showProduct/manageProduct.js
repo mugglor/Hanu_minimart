@@ -125,7 +125,6 @@ class ManageProduct extends React.Component {
           <div className="newProduct">
             <Link to="/admin/manageproduct/newproduct" className="linkNewP">
               <Button variant="primary" size="sm">
-                <PlusCircleOutlined />
                 New Product
               </Button>
             </Link>
