@@ -34,7 +34,7 @@ class SiderMenu extends React.Component {
       username: username,
     });
     const id = this.getCookie("uid");
-    const urlgetDataCart = `http://hanuminimart.azurewebsites.net/api/cart/getByUser?userId=${id}`;
+    const urlgetDataCart = `http://localhost:8085/api/cart/getByUser?userId=${id}`;
     const getDataCartItem = await axios.get(urlgetDataCart);
 
     // const getDataCart = getDataCartItem.data.cartItem.length;

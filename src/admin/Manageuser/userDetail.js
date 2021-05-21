@@ -66,7 +66,7 @@ class UserDetail extends React.Component {
     event.preventDefault();
 
     console.log("delete>>>>>>>>>>>", this.props);
-    const urlDelete = `http://hanuminimart.azurewebsites.net/api/account/delete?id=${this.state.user.id}`;
+    const urlDelete = `https://hanuminimart4c.azurewebsites.net/api/account/delete?id=${this.state.user.id}`;
     const deleteUser = await axios.get(urlDelete);
 
     this.props.history.push("/admin/manageuser");
@@ -84,7 +84,7 @@ class UserDetail extends React.Component {
       address: address,
       role: role,
     };
-    const urlUpdate = `http://hanuminimart.azurewebsites.net/api/account/update?id=${this.state.user.id}`;
+    const urlUpdate = `https://hanuminimart4c.azurewebsites.net/api/account/update?id=${this.state.user.id}`;
     const postDataUser = await axios.post(urlUpdate, body);
     const userAfterUpdate = postDataUser.data;
     console.log("data sau update ne", postDataUser.data);
@@ -97,7 +97,7 @@ class UserDetail extends React.Component {
 
   async componentDidMount() {
     console.log(this.props.match);
-    const url = "http://hanuminimart.azurewebsites.net/api/account/getAll";
+    const url = "https://hanuminimart4c.azurewebsites.net/api/account/getAll";
     //    const postAuthen = await axios({method: "POST", url, headers:{authorization: this.state.Authentication}})
     const getData = await axios({
       method: "GET",

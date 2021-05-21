@@ -181,7 +181,7 @@ class Hanu_minimart extends React.Component {
     } = this.state;
     console.log(isLoginEm, cart,"rendddddddddddđ");
     return (
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <BrowserRouter>
         <Switch>
           <Route isLogin={isLogin} exact path="/">
             <AppRoute isLogin={isLogin}>

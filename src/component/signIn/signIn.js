@@ -41,7 +41,7 @@ class SignIn extends Component {
     console.log("load.............");
     const { usernameOrEmail, password } = this.state;
 
-    const url = "http://hanuminimart.azurewebsites.net/auth/signin";
+    const url = "https://hanuminimart4c.azurewebsites.net/auth/signin";
 
     const body = {
       usernameOrEmail: usernameOrEmail,
@@ -153,7 +153,7 @@ class SignIn extends Component {
 
         <form
           className="form"
-          action="http://hanuminimart.azurewebsites.net/auth/signin"
+          action="https://hanuminimart4c.azurewebsites.net/auth/signin"
           method="POST"
         >
           <div className="input_field">

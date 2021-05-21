@@ -35,7 +35,7 @@ class EditProduct extends React.Component {
 
   async fetchDataDelete(){
     console.log("delete_________________");
-    const Url = `http://hanuminimart.azurewebsites.net/api/product/delete/${this.state.id}`;
+    const Url = `https://hanuminimart4c.azurewebsites.net/api/product/delete/${this.state.id}`;
 
     const DeleteData = await axios.delete(Url);
     this.props.history.push("/admin/manageproduct");
@@ -65,7 +65,7 @@ class EditProduct extends React.Component {
     //   console.log(body);
 
       try{
-          const url =`http://hanuminimart.azurewebsites.net/api/product/update/${id1}?name=${name}&price=${price}&quantity=${quantity}&description=${description}&category=${category}&picture_URL=${picture_URL}&sale=${sale}&expireDate=${expireDate}&status=${status}`;
+          const url =`https://hanuminimart4c.azurewebsites.net/api/product/update/${id1}?name=${name}&price=${price}&quantity=${quantity}&description=${description}&category=${category}&picture_URL=${picture_URL}&sale=${sale}&expireDate=${expireDate}&status=${status}`;
           console.log("link kkkkkkkkkkkkkk",url);
           const sendData = await axios.put(url);
           console.log(sendData.data);
@@ -81,7 +81,7 @@ class EditProduct extends React.Component {
   async componentDidMount() {
     console.log("Propssss đây ..........", typeof this.state.id);
 
-    const url = "http://hanuminimart.azurewebsites.net/api/product/getAll";
+    const url = "https://hanuminimart4c.azurewebsites.net/api/product/getAll";
     const getDataProduct = await axios.get(url);
     const data = getDataProduct.data.find(
       (item) => item.id === Number(this.state.id)

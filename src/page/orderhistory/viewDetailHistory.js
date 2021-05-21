@@ -17,7 +17,7 @@ class ViewDetailHistory extends React.Component {
   async componentDidMount() {
     console.log("orderId ,,,,,,", this.props);
     console.log(this.props.match.params.id);
-    const urlCart = `http://hanuminimart.azurewebsites.net/api/order/${this.props.match.params.id}`;
+    const urlCart = `https://hanuminimart4c.azurewebsites.net/api/order/${this.props.match.params.id}`;
 
     const fetchData = await axios.get(urlCart);
 

@@ -36,7 +36,7 @@ class ManageUser extends React.Component {
     e.preventDefault();
     console.log("a_______________", typeof this.state.search);
 
-    const url = `http://hanuminimart.azurewebsites.net/api/account/getAll?name=${this.state.search}`;
+    const url = `https://hanuminimart4c.azurewebsites.net/api/account/getAll?name=${this.state.search}`;
     const getData = await axios({
       method: "GET",
       url,
@@ -55,7 +55,7 @@ class ManageUser extends React.Component {
 
   async componentDidMount() {
     console.log("start.................");
-    const url = "http://hanuminimart.azurewebsites.net/api/account/getAll";
+    const url = "https://hanuminimart4c.azurewebsites.net/api/account/getAll";
     //    const postAuthen = await axios({method: "POST", url, headers:{authorization: this.state.Authentication}})
     const getData = await axios({
       method: "GET",

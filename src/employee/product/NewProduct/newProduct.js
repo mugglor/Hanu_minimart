@@ -47,7 +47,7 @@ class NewProduct extends React.Component {
           status: status
       }
       
-      const url = "http://hanuminimart.azurewebsites.net/api/product/add";
+      const url = "https://hanuminimart4c.azurewebsites.net/api/product/add";
       const postNew = await axios.post(url, body);
       console.log("neww Product>>>>>>>>>>>>");
         this.props.history.push("/employee/manageproduct");

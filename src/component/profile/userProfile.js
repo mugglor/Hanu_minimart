@@ -25,7 +25,7 @@ class UserProfile extends React.Component {
         isLogin: true,
       })
     }
-    const url = "http://hanuminimart.azurewebsites.net/api/account/getAll";
+    const url = "https://hanuminimart4c.azurewebsites.net/api/account/getAll";
     const getData = await axios({
       method: "GET",
       url,

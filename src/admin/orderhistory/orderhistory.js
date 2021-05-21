@@ -27,7 +27,7 @@ class OrderHistory extends React.Component{
         console.log("order ....................")
         const id = this.getCookie('uid');
 
-        const urlOrder = `http://hanuminimart.azurewebsites.net/api/order/getAll`;
+        const urlOrder = `https://hanuminimart4c.azurewebsites.net/api/order/getAll`;
         const fetchOrder = await axios.get(urlOrder);
 
         console.log(fetchOrder.data)

@@ -27,7 +27,7 @@ class OrderHistory extends React.Component{
         console.log("order ....................")
         const id = this.getCookie('uid');
 
-        const urlOrder = `http://hanuminimart.azurewebsites.net/api/order/getByUserId?userId=${id}`;
+        const urlOrder = `https://hanuminimart4c.azurewebsites.net/api/order/getByUserId?userId=${id}`;
         const fetchOrder = await axios.get(urlOrder);
 
         console.log(fetchOrder.data)
@@ -43,7 +43,7 @@ class OrderHistory extends React.Component{
             <div>
             <div>
             <ScollToTop/>
-              <form>
+              <form style={{marginLeft: 790}}>
                 <input
                   style={{ border: "1px solid blue", width: 300, height: 37 }}
                   placeholder="Search "

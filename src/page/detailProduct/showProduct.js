@@ -80,7 +80,7 @@ class DetailProduct extends React.Component {
     try {
       const { product_id, quantity1 } = this.state;
       console.log("uid", this.state.uid);
-      const urlGetCart = `http://hanuminimart.azurewebsites.net/api/cart/getByUser?userId=${this.state.uid}`;
+      const urlGetCart = `https://hanuminimart4c.azurewebsites.net/api/cart/getByUser?userId=${this.state.uid}`;
       const getCartForUser = await axios.get(urlGetCart);
       console.log("lấy cart nè......", getCartForUser.data.id);
 
@@ -92,7 +92,7 @@ class DetailProduct extends React.Component {
       };
       console.log("content cart??????", body);
 
-      const urlSendCardItem = "http://hanuminimart.azurewebsites.net/api/cartItem/add";
+      const urlSendCardItem = "https://hanuminimart4c.azurewebsites.net/api/cartItem/add";
       const postCartItem = await axios.post(urlSendCardItem, body);
       console.log("Sent ...........", postCartItem);
       // window.location.reload()
@@ -114,7 +114,7 @@ class DetailProduct extends React.Component {
       uid: this.getCookie("uid"),
     });
     // console.log("okeyyyyyy");
-    const urlProduct = "http://hanuminimart.azurewebsites.net/api/product/getAll";
+    const urlProduct = "https://hanuminimart4c.azurewebsites.net/api/product/getAll";
     const getDataProduct = await axios.get(urlProduct);
     const product = getDataProduct.data;
     this.setState({
